@@ -69,7 +69,7 @@ router.get('/profile', (req, res, next) => {
         //     res.status(400).json({ msg: 'Auth denied, no token'})
         // }
     
-
+//sad
     try{
     //Return the user credentials/info
     var decoded = jwt.verify(token, config.get('jwtSecret'));
