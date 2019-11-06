@@ -1,0 +1,4 @@
+{  
+    "jwtSecret":"mySecret",
+    "mongoURI":"mongodb+srv://jibehjibeh:0936389647619@cluster0-eal7s.mongodb.net/test?retryWrites=true&w=majority"
+}
