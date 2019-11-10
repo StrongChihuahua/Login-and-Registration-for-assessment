@@ -25,7 +25,7 @@ export class HomeAuthComponent implements OnInit {
   usernameForm: FormGroup;
   passwordForm: FormGroup;
 
-  constructor(private authservice: AuthService, private modalService: BsModalService, private fb: FormBuilder, private router: Router) { }
+  constructor(private authservice: AuthService, private modalService: BsModalService, private fb: FormBuilder) { }
 
 
 
@@ -68,11 +68,9 @@ export class HomeAuthComponent implements OnInit {
         this.modalRef = this.modalService.show(template,{ backdrop: 'static', keyboard: false });
     }
 
+
     onSubmitEdit() {
       const form = this.editForm();
-      if(form === {}) {
-          alert('form is {}');
-      }
 
       this.authservice.editProfile(form)
           .subscribe((response:any) => {
@@ -80,12 +78,10 @@ export class HomeAuthComponent implements OnInit {
             window.location.href = '/' 
           }, 
           (err:any) => {
-            this.errors = err.error.msg;
-            
+              this.errors = err.error.msg;
           }
-          )
+        )
     }
-
 
 
     editForm() {
@@ -109,4 +105,13 @@ export class HomeAuthComponent implements OnInit {
 
       return initForm;
     }
+
+    onReset() {
+      this.modalRef.hide();
+      this.firstNameForm.get('first_name').setValue('');
+      this.lastNameForm.get('last_name').setValue('');
+      this.usernameForm.get('username').setValue('');
+      this.passwordForm.get('password').setValue('');
+      this.errors = null;
+    }   
 }
