@@ -12,7 +12,7 @@ import { AuthService } from '../_services/auth.service'
 export class RegisterComponentComponent implements OnInit {
 
 
-error: string;
+  error: string;
 
 //Registration formgroup
   regForm: FormGroup;

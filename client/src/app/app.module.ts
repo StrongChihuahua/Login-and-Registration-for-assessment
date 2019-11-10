@@ -24,17 +24,11 @@ import { AuthOthersComponent } from './home-auth/auth-others/auth-others.compone
 
 
 
-//import { Mat } from 
-
-
 @NgModule({
   declarations: [
     AppComponent,
-
-    //NAVBVARS
     NavBarComponent,
     HomeAuthNavbarComponent,
-    
     AuthOthersComponent,
     routingComponents
   ],
@@ -56,9 +50,7 @@ import { AuthOthersComponent } from './home-auth/auth-others/auth-others.compone
                 provide: HTTP_INTERCEPTORS,
                 useClass: AuthInterceptor,
                 multi: true
-              },
-              
-              ],
+              }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

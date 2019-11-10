@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http'
+import { HttpInterceptor, HttpRequest, HttpHandler } from '@angular/common/http'
 import { Router } from '@angular/router';
 import { AuthService } from '../_services/auth.service';
 

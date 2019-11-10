@@ -7,7 +7,6 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { HomeAuthComponent } from './home-auth/home-auth.component'
 import { HomeAuthPostComponent } from './home-auth/home-auth-post/home-auth-post.component'
 import { AuthGuardGuard } from './authGuard/auth-guard.guard'
-import { AuthOthersComponent } from './home-auth/auth-others/auth-others.component';
 
 
 const routes: Routes = [

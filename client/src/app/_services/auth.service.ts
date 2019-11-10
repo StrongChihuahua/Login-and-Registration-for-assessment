@@ -39,6 +39,7 @@ export class AuthService {
     return this.http.put(`${environment.apiEndpoint}/users/update/${userPayload._id}`, user, {headers: header});
   }
 
+  
   //Non http methods
   setToken(token: string) {
     localStorage.setItem('token', token);
@@ -69,7 +70,4 @@ export class AuthService {
   getToken() {
     return localStorage.getItem('token');
   }
-
-
-
 }

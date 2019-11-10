@@ -3,7 +3,12 @@ import { AuthService } from '../_services/auth.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { Router } from '@angular/router';
+
+
+interface Form {
+  
+}
+
 
 @Component({
   selector: 'app-home-auth',
@@ -68,6 +73,12 @@ export class HomeAuthComponent implements OnInit {
         this.modalRef = this.modalService.show(template,{ backdrop: 'static', keyboard: false });
     }
 
+    resetForm() {
+      this.firstNameForm.get('first_name').setValue('');
+      this.lastNameForm.get('last_name').setValue('');
+      this.usernameForm.get('username').setValue('');
+      this.passwordForm.get('password').setValue('');
+    }
 
     onSubmitEdit() {
       const form = this.editForm();
@@ -83,7 +94,7 @@ export class HomeAuthComponent implements OnInit {
         )
     }
 
-
+    
     editForm() {
       var initForm: any = {};
 
@@ -108,10 +119,7 @@ export class HomeAuthComponent implements OnInit {
 
     onReset() {
       this.modalRef.hide();
-      this.firstNameForm.get('first_name').setValue('');
-      this.lastNameForm.get('last_name').setValue('');
-      this.usernameForm.get('username').setValue('');
-      this.passwordForm.get('password').setValue('');
+      this.resetForm();
       this.errors = null;
     }   
 }
