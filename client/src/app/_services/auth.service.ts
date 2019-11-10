@@ -20,12 +20,8 @@ export class AuthService {
   }
 
   fetchProfile() {
-    const token = this.getToken();
-    const header = new HttpHeaders({
-      'Content-Type':  'application/json',
-      'auth-token': token
-    });
-   return this.http.get(`${environment.apiEndpoint}/users/profile`, {headers: header});
+    const header = new HttpHeaders().set('Content-Type',  'application/json');
+    return this.http.get(`${environment.apiEndpoint}/users/profile`, {headers: header});
   }
 
   onRegister(user: UserModel) {

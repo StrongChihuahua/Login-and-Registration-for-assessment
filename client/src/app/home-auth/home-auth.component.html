@@ -48,13 +48,22 @@
                     <input class="form-control" 
                             type="text"  
                             formControlName="username"  
-                            placeholder="New Username (optional)" >
+                            minlength="4"
+                            placeholder="New Username (optional)"
+                            [ngClass]="{'is-invalid': usernameForm.get('username').hasError('minlength')}">
+                    <div class="invalid-feedback">Username must be at least 4 characters long</div>
                 </div>
         </form>
 
         <form [formGroup]="passwordForm">
             <div class="form-group">
-                <input class="form-control" type="password" formControlName="password"  placeholder="New Password (optional)">
+                <input class="form-control" 
+                        type="password" 
+                        formControlName="password" 
+                        minlength="8" 
+                        placeholder="New Password (optional)"
+                        [ngClass]="{'is-invalid': passwordForm.get('password').hasError('minlength')}">
+                <div class="invalid-feedback">Password must be at least 8 characters long</div>
             </div>
         </form>
         <button type="button" class="btn btn-primary mt-3" (click)="onSubmitEdit()">Save changes</button>

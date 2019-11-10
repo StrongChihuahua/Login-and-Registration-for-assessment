@@ -4,12 +4,6 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
-
-interface Form {
-  
-}
-
-
 @Component({
   selector: 'app-home-auth',
   templateUrl: './home-auth.component.html',
@@ -46,15 +40,12 @@ export class HomeAuthComponent implements OnInit {
     )
 
     this.usernameForm = this.fb.group(
-      { username: [''] }
+      { username: ['', Validators.minLength] }
     )
 
     this.passwordForm = this.fb.group(
-      { password: [''] }
+      { password: ['', Validators.minLength] }
     )
-
-
-
     this.authservice.fetchProfile()
         .subscribe((response:any) => {
           if(response){
@@ -74,6 +65,7 @@ export class HomeAuthComponent implements OnInit {
     }
 
     resetForm() {
+      //this.firstNameForm.get('first_name').
       this.firstNameForm.get('first_name').setValue('');
       this.lastNameForm.get('last_name').setValue('');
       this.usernameForm.get('username').setValue('');
