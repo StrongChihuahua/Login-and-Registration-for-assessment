@@ -1,0 +1,32 @@
+
+* {
+  box-sizing:border-box;
+}
+
+body {
+  background-image: url('../../BlueWave.png');
+}
+
+.profile {
+  opacity: 0.7;
+  padding: 20px;
+  float: left;
+  width: 20%;
+}
+
+.main {
+  margin-top: 21px;
+  opacity: 0.6;
+  background-color: whitesmoke;
+  float: left;
+  width: 79%; 
+  padding: 20px;
+  height: 100%;
+}
+
+
+@media screen and (max-width:800px) {
+  .profile, .main {
+    width:100%; 
+  }
+}

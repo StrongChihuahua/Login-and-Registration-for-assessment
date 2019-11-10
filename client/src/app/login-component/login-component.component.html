@@ -1,0 +1,13 @@
+<div class="alert alert-danger error" *ngIf="errors">
+    {{errors}}
+</div>
+<form class="form-inline ml-auto p-2" [formGroup]="logForm" (submit)="onSubmit()" >
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">@</span>
+      </div>
+      <input type="text" class="form-control" placeholder="Username" aria-label="Username" formControlName="username" aria-describedby="basic-addon1">
+    </div>
+    <input class="form-control mr-sm-2" type="password" placeholder="Password" formControlName="password" aria-label="Search">
+    <button class="btn btn-outline-primary" type="submit">Login</button>
+</form>

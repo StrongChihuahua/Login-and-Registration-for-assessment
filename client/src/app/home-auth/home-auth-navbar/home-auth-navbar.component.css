@@ -1,0 +1,14 @@
+.navbar { 
+    min-height: 85px; 
+}
+
+
+.navbar a.logout {
+  color: #007aff
+}
+
+.navbar a.logout:hover{
+  color: #004ce6;
+}
+ 
+

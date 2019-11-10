@@ -1,0 +1,61 @@
+<app-home-auth-navbar></app-home-auth-navbar>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="profile">
+        <div class="card">
+            <img src="../../assets/profile.jpg" alt="Avatar" style="width:100%">
+            <div class="container">
+                <h3><b>{{first_name }} {{last_name}}</b></h3> 
+                <p>Username: {{username}}</p> 
+                <p>User ID: {{_id}}</p> 
+                <button type="button" (click)="openModal(template)" class="btn btn-secondary mb-2" >Edit Profile</button>
+            </div>
+        </div>
+    </div>
+        
+    <div class="main">
+        <h1>CONTENTS GOES HERE</h1>
+    </div>
+
+
+<ng-template #template>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left display-5">EDIT PROFILE</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="alert alert-danger error" *ngIf="errors" >
+            {{errors}}
+        </div>
+        <form [formGroup]="firstNameForm">
+            <div class="form-group">
+                <input class="form-control" type="text" formControlName="first_name"  placeholder="First Name (optional)">
+            </div>
+        </form>
+
+        <form [formGroup]="lastNameForm">
+            <div class="form-group">
+                <input class="form-control" type="text" formControlName="last_name"  placeholder="Last Name (optional)">
+            </div>
+        </form>
+
+        <form [formGroup]="usernameForm">
+                <div class="form-group">
+                    <input class="form-control" type="text" formControlName="username"  placeholder="New Username (optional)">
+                </div>
+        </form>
+
+        <form [formGroup]="passwordForm">
+            <div class="form-group">
+                <input class="form-control" type="password" formControlName="password"  placeholder="New Password (optional)">
+            </div>
+        </form>
+        <button type="button" class="btn btn-primary mt-3" (click)="onSubmitEdit()" href="/">Save changes</button>
+    </div>
+    
+</ng-template>
+</body>

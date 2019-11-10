@@ -1,0 +1,59 @@
+.label-form h1 {
+  font-family: Sans-Serif;
+  padding: 5px;
+  font-size: 45px;
+}
+
+  .login-jsx {
+      padding-top: 50px;
+      margin: 0 auto;
+      width: 80%;
+  }
+  .login-page input {
+    
+  outline: 1;
+	background: #f2f2f2;
+	width: 100%;
+	border: 1px solid block;
+	margin: 5px 0 25px;
+	padding: 15px;
+	box-sizing: border-box;
+	font-size: 14px; 
+	border-radius: 5px;
+  }
+
+.login-page-container {
+  width: 50%;
+  margin: 0 auto;
+  
+}
+
+.login-text {
+ padding: 0%;
+}
+label {
+    font-size: 25px
+}
+
+.login-form p {
+    text-align: center;
+  margin: 20px 0 20px 0;
+}
+.login-form h1 {
+    text-align: center;
+  margin: 20px 0 20px 0;
+}
+
+.label-form h1 {
+  padding: 5px;
+  font-size: 30px;
+}
+
+form {
+    padding-top: 50px;
+    text-align: center;
+}
+
+.label1{
+    text-align: left;
+}       
