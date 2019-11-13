@@ -6,9 +6,9 @@
       <div class="myform form  mt-5">
         <h1 class="text-center mt-5 display-4">Registration</h1>
         <hr>
-        <div class="alert alert-danger error" *ngIf="error">
+        <alert type="danger" *ngIf="error">
             {{error}}
-        </div>
+        </alert>
 
         <form [formGroup]="regForm" name="signup" (submit)="onSubmit()">
           <div class="form-group">

@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 
 //controller
-const createUser = require('../controller/createUser');
-const logInUser = require('../controller/loginUser');
-const getUserPayload = require('../controller/getUserPayload');
-const updateUser = require('../controller/updateUser');
+const createUser = require('../controller/user/createUser');
+const logInUser = require('../controller/user/loginUser');
+const getUserPayload = require('../controller/user/getUserPayload');
+const updateUser = require('../controller/user/updateUser');
 
 //middle
 const verifyToken = require('../controller/middeware/verifyToken')

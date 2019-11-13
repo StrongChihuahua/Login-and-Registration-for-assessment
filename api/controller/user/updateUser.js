@@ -1,8 +1,18 @@
-const User = require('../Schema/User');
+const User = require('../../Schema/User');
 const hashPassword = require('./helper-controller');
 
 
 module.exports = updateUser = (req, res) => {
+
+    //Additional Validation
+    if(req.body.first_name === '' || req.body.last_name === '') {
+        return res.status(400).json({msg: `Name properties are required and shouldn't be empty`});
+    }
+    if(req.body.username === '') {
+        return res.status(400).json({msg: `Username is required and shouldn't be empty`})
+    }
+
+    //Validate the body is false or no properties
     const bodyLength = Object.keys(req.body).length;
     if(bodyLength !== 0) {
         const id = req.params.id;

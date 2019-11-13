@@ -7,6 +7,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { HomeAuthComponent } from './home-auth/home-auth.component'
 import { HomeAuthPostComponent } from './home-auth/home-auth-post/home-auth-post.component'
 import { AuthGuardGuard } from './authGuard/auth-guard.guard'
+import { ChatComponentComponent } from './home-auth/chat-component/chat-component.component'
 
 
 const routes: Routes = [
@@ -20,11 +21,18 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: HomeAuthComponent,
-    canActivate: [AuthGuardGuard]
+    canActivate: [AuthGuardGuard],
+    children: [{
+      path: '',
+      component: HomeAuthComponent
+    },
+    {
+      path: 'chat',
+      component: ChatComponentComponent
+    }]
   },
   {
-    path: "**",
+    path: '**',
     component: PageNotFoundComponent
   }
 ];

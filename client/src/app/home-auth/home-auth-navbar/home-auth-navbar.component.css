@@ -3,12 +3,11 @@
 }
 
 
-.navbar a.logout {
+.navbar a {
   color: #007aff
 }
 
-.navbar a.logout:hover{
+.navbar a:hover{
   color: #004ce6;
 }
  
-

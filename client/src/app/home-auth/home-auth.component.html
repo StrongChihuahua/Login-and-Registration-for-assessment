@@ -11,12 +11,13 @@
                 <p>Username: {{username}}</p> 
                 <p>User ID: {{_id}}</p> 
                 <button type="button" (click)="openModal(template)" class="btn btn-secondary mb-2" >Edit Profile</button>
+                <br>
             </div>
         </div>
     </div>
         
     <div class="main">
-        <app-home-auth-post></app-home-auth-post>
+   
     </div>
 
 
@@ -28,45 +29,71 @@
         </button>
     </div>
     <div class="modal-body">
-        <div class="alert alert-danger error" *ngIf="errors" >
+        <form id="form1">
+        <alert type="danger" *ngIf="errors" >
             {{errors}}
-        </div>
+        </alert>
         <form [formGroup]="firstNameForm">
             <div class="form-group">
-                <input class="form-control" type="text" formControlName="first_name"  placeholder="First Name (optional)">
+                <label for="first_name"><b>First Name</b></label>
+                <input  class="form-control"
+                        id="first_name" 
+                        type="text"
+                        (keyup.enter)="onSubmitEdit()" 
+                        formControlName="first_name"
+                        [ngClass]="{'is-invalid': firstNameForm.get('first_name').hasError('required')}">
+                <div class="invalid-feedback">First name shouldn't be empty</div>
             </div>
         </form>
 
         <form [formGroup]="lastNameForm">
             <div class="form-group">
-                <input class="form-control" type="text" formControlName="last_name"  placeholder="Last Name (optional)">
+                    <label for="last_name"><b>Last Name</b></label>
+                <input  class="form-control"
+                        id="last_name" 
+                        type="text"
+                        (keyup.enter)="onSubmitEdit()" 
+                        formControlName="last_name" 
+                        [ngClass]="{'is-invalid': lastNameForm.get('last_name').hasError('required')}">
+                <div class="invalid-feedback">Last name shouldn't be empty</div>
             </div>
         </form>
 
         <form [formGroup]="usernameForm">
                 <div class="form-group">
-                    <input class="form-control" 
+                    <label for="username"><b>Username</b></label>
+                    <input  class="form-control" 
+                            id="username"
                             type="text"  
                             formControlName="username"  
                             minlength="4"
-                            placeholder="New Username (optional)"
-                            [ngClass]="{'is-invalid': usernameForm.get('username').hasError('minlength')}">
-                    <div class="invalid-feedback">Username must be at least 4 characters long</div>
+                            (keyup.enter)="onSubmitEdit()"
+                            placeholder="Username"
+                            [ngClass]="{'is-invalid': usernameForm.get('username').hasError('minlength') || usernameForm.get('username').hasError('required')}">
+                    <div class="invalid-feedback">
+                        <div *ngIf="usernameForm.get('username').hasError('minlength')">Username must be at least 4 characters long</div>
+                        <div *ngIf="usernameForm.get('username').hasError('required')">Username shouldn't be empty</div>
+                    </div>
+                    
                 </div>
         </form>
 
         <form [formGroup]="passwordForm">
             <div class="form-group">
-                <input class="form-control" 
+                <label for="password"><b>New Password</b></label>
+                <input  class="form-control" 
+                        id="password" 
                         type="password" 
                         formControlName="password" 
+                        (keyup.enter)="onSubmitEdit()"
                         minlength="8" 
-                        placeholder="New Password (optional)"
+                        placeholder="Enter new password"
                         [ngClass]="{'is-invalid': passwordForm.get('password').hasError('minlength')}">
                 <div class="invalid-feedback">Password must be at least 8 characters long</div>
             </div>
         </form>
-        <button type="button" class="btn btn-primary mt-3" (click)="onSubmitEdit()">Save changes</button>
+    </form>
+        <button type="submit" class="btn btn-primary mt-3" form="form1" (click)="onSubmitEdit()">Save changes</button>
     </div>
     
 </ng-template>

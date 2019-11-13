@@ -1,0 +1,12 @@
+.navbar { 
+    min-height: 85px; 
+}
+
+.navbar a {
+  color: #007aff
+}
+
+.navbar a:hover{
+  color: #004ce6;
+}
+ 

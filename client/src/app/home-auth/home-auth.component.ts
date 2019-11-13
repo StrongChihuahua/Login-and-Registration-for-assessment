@@ -4,6 +4,7 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
+
 @Component({
   selector: 'app-home-auth',
   templateUrl: './home-auth.component.html',
@@ -24,25 +25,19 @@ export class HomeAuthComponent implements OnInit {
   usernameForm: FormGroup;
   passwordForm: FormGroup;
 
-  constructor(private authservice: AuthService, private modalService: BsModalService, private fb: FormBuilder) { }
+
+
+  constructor(private authservice: AuthService, 
+              private modalService: BsModalService, 
+              private fb: FormBuilder)
+               { }
 
 
 
 
   ngOnInit() {
-
+  
     //instances of formControlName
-    this.firstNameForm = this.fb.group(
-      { first_name: [''] }
-    )
-    this.lastNameForm = this.fb.group(
-      { last_name: [''] }
-    )
-
-    this.usernameForm = this.fb.group(
-      { username: ['', Validators.minLength] }
-    )
-
     this.passwordForm = this.fb.group(
       { password: ['', Validators.minLength] }
     )
@@ -54,26 +49,38 @@ export class HomeAuthComponent implements OnInit {
             this.last_name = last_name;
             this.username = username;
             this._id = _id;
+
+            this.firstNameForm = this.fb.group(
+              { first_name: [first_name, Validators.required] }
+            )
+            this.lastNameForm = this.fb.group(
+              { last_name: [last_name, Validators.required] }
+            )
+            this.usernameForm = this.fb.group(
+              { username: [username, [Validators.minLength, Validators.required]] }
+            )
+
         }
          }, (err:any) => {
-          alert(err.errors.msg);
+          alert(err ? 'Server not found' : err);
     })
 }
 
     openModal(template: TemplateRef<any>) {
-        this.modalRef = this.modalService.show(template,{ backdrop: 'static', keyboard: false });
+        this.modalRef = this.modalService.show(template,{ backdrop: 'static', keyboard: true });
     }
 
     resetForm() {
       //this.firstNameForm.get('first_name').
-      this.firstNameForm.get('first_name').setValue('');
-      this.lastNameForm.get('last_name').setValue('');
-      this.usernameForm.get('username').setValue('');
+      this.firstNameForm.get('first_name').setValue(this.first_name);
+      this.lastNameForm.get('last_name').setValue(this.last_name);
+      this.usernameForm.get('username').setValue(this.username);
       this.passwordForm.get('password').setValue('');
     }
 
     onSubmitEdit() {
-      const form = this.editForm();
+      
+      const form = this.filteredForm();
 
       this.authservice.editProfile(form)
           .subscribe((response:any) => {
@@ -87,26 +94,21 @@ export class HomeAuthComponent implements OnInit {
     }
 
     
-    editForm() {
-      var initForm: any = {};
-
-      if(this.firstNameForm.value && this.firstNameForm.get('first_name').value !== ''){
-        initForm.first_name = this.firstNameForm.get('first_name').value;
+    filteredForm() {
+      var newFilteredForm: any = {};
+      if(this.firstNameForm.value && this.firstNameForm.get('first_name').value !== this.first_name){
+        newFilteredForm.first_name = this.firstNameForm.get('first_name').value;
       }
-
-      if(this.lastNameForm.value && this.lastNameForm.get('last_name').value !== ''){
-        initForm.last_name = this.lastNameForm.get('last_name').value;
+      if(this.lastNameForm.value && this.lastNameForm.get('last_name').value !== this.last_name){
+        newFilteredForm.last_name = this.lastNameForm.get('last_name').value;
       }
-
-      if(this.usernameForm.value && this.usernameForm.get('username').value !== ''){
-        initForm.username = this.usernameForm.get('username').value;
+      if(this.usernameForm.value && this.usernameForm.get('username').value !== this.username){
+        newFilteredForm.username = this.usernameForm.get('username').value;
       }
-
       if(this.passwordForm.value && this.passwordForm.get('password').value !== ''){
-        initForm.password = this.passwordForm.get('password').value;
+        newFilteredForm.password = this.passwordForm.get('password').value;
       }   
-
-      return initForm;
+      return newFilteredForm;
     }
 
     onReset() {

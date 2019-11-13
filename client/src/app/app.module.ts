@@ -5,22 +5,23 @@ import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ModalModule, BsModalRef } from 'ngx-bootstrap';
 
-//Navbars
+import { ModalModule, BsModalRef } from 'ngx-bootstrap';
+import { AlertModule } from 'ngx-bootstrap/alert';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+
+
 import { NavBarComponent } from './nav-bar/nav-bar.component'; 
 import { HomeAuthNavbarComponent } from './home-auth/home-auth-navbar/home-auth-navbar.component';
 
-//Services
+import { JwtHelperService } from "@auth0/angular-jwt";
 import { AuthService } from './_services/auth.service'
 
-//JWT token decoder
-import { JwtHelperService } from "@auth0/angular-jwt";
-
-//AUTH GUARD
 import { AuthGuardGuard } from './authGuard/auth-guard.guard';
 import { AuthInterceptor } from './authGuard/auth-guard.interceptor';
-import { AuthOthersComponent } from './home-auth/auth-others/auth-others.component'
+import { AuthOthersComponent } from './home-auth/auth-others/auth-others.component';
+import { ChatComponentComponent } from './home-auth/chat-component/chat-component.component';
+
 
 
 
@@ -30,7 +31,8 @@ import { AuthOthersComponent } from './home-auth/auth-others/auth-others.compone
     NavBarComponent,
     HomeAuthNavbarComponent,
     AuthOthersComponent,
-    routingComponents
+    routingComponents,
+    ChatComponentComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +41,9 @@ import { AuthOthersComponent } from './home-auth/auth-others/auth-others.compone
     FormsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    AlertModule.forRoot(),
+    BsDropdownModule.forRoot(),
   ],
   providers: [ 
               JwtHelperService, 

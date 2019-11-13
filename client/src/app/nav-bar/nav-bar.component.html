@@ -1,10 +1,24 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <nav class="navbar navbar-light bg-light d-flex">
-    <a class="p-2"  routerLink="/login">
-        <i class="fa fa-fw fa-home"></i>
-    </a>
-    <a class="nav-link p-2" routerLinkActive="active current" routerLink="/register">Register 
-        <span class="sr-only">(current)</span>
-    </a>
+    <div class="btn-group" dropdown>
+        <a class="p-2"  routerLink="/login">
+            <i class="fa fa-fw fa-home"></i>
+        </a>
+        <button id="button-split" type="button" 
+            dropdownToggle class="btn btn btn-link dropdown-toggle dropdown-toggle-split"
+            aria-controls="dropdown-split">
+            <span class="caret"></span>
+        </button>
+        <ul id="dropdown-split" 
+            *dropdownMenu class="dropdown-menu"
+            role="menu" 
+            aria-labelledby="button-split">
+            <li class="text-center">
+                <a class="dropdown-item nav-link p-2" routerLink="/register">
+                    <i class="fa fa-plus"></i>  Register
+                </a>
+            </li>
+        </ul>
+    </div>
     <app-login-component class="ml-auto p-2"></app-login-component>
 </nav>
