@@ -21,6 +21,8 @@ import { AuthGuardGuard } from './authGuard/auth-guard.guard';
 import { AuthInterceptor } from './authGuard/auth-guard.interceptor';
 import { AuthOthersComponent } from './home-auth/auth-others/auth-others.component';
 import { ChatComponentComponent } from './home-auth/chat-component/chat-component.component';
+import { PostService } from './_services/post.service';
+import { SocketIOService } from './_services/socket-io.service';
 
 
 
@@ -48,7 +50,9 @@ import { ChatComponentComponent } from './home-auth/chat-component/chat-componen
   providers: [ 
               JwtHelperService, 
               AuthGuardGuard,
-              AuthService, 
+              AuthService,
+              PostService,
+              SocketIOService, 
               BsModalRef,
               {
                 provide: HTTP_INTERCEPTORS,

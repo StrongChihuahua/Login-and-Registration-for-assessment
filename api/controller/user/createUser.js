@@ -10,6 +10,7 @@ module.exports = createUser = (req, res) => {
         return res.status(400).json( { msg: 'Please make sure all required fields are filled out correctly'} );
     }
 
+    
     //Validate the username if already exist
     User
         .findOne({ username: req.body.username})

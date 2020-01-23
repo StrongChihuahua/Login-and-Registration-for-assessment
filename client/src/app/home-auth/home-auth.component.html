@@ -10,18 +10,91 @@
                 <h3><b>{{first_name }} {{last_name}}</b></h3> 
                 <p>Username: {{username}}</p> 
                 <p>User ID: {{_id}}</p> 
-                <button type="button" (click)="openModal(template)" class="btn btn-secondary mb-2" >Edit Profile</button>
+                <button type="button" (click)="openModalEdit(editTemplate)" class="btn btn-secondary mb-2" >Edit Profile</button>
                 <br>
             </div>
         </div>
     </div>
         
     <div class="main">
-   
+        <div class="border-bottom">
+            <h2 style="width:49%;" class="d-inline-block text-left">Discussions</h2>
+            <div style="width:50%;" class="d-inline-block text-right">
+                <button type="button" class="btn btn-link" style="padding: 0;" ><small><i class="fa fa-plus"></i> Add Post</small></button>
+            </div>
+            
+        </div>
+        <div class="mt-4 border-bottom" *ngFor="let post of posts">
+            <div class="media" >
+                <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                <div class="media-body">
+                    <span class="text-muted pull-right">
+                        <small class="text-muted">Created on {{post.createdAt | date}}, </small>
+                        <small class="text-muted">Last Updated on {{post.updatedAt | date}}</small>
+                    </span>
+                    <strong class="text-success"><i>@{{post.post_author}}</i></strong> 
+                    <span >
+                        <h3 class="ml-2 mt-3"><a href="">{{post.title}}</a></h3>
+                    </span>
+                </div>
+            </div>
+        <h5 class="pt-3">{{post.body}}</h5>
+        <p>Comments: {{post.__v}}</p>
+        <button type="button" (click)="openModalComment(commentsTemplate)" class="btn btn-link"><small>View comments</small></button>
+
+        <ng-template  #commentsTemplate >
+            <div class="container">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left display-5">POST</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="onReset()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="media m-2" >
+                    <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                    <div class="media-body">
+                        <span class="text-muted pull-right">
+                            <small class="text-muted">Created on {{post.createdAt | date}} </small>
+                        </span>
+                        <strong class="text-success"><i>@{{post.post_author}}</i></strong> 
+                        <span >
+                            <h3 class="ml-2 mt-3"><a href="">{{post.title}}</a></h3>
+                        </span>
+                    </div>
+                </div>
+                <div class="m-1 ml-3 mt-4"> 
+                    <h5 class="pt-3">{{post.body}}</h5>
+                </div>
+                <div>
+                    <div class="panel-heading mt-5 lead">
+                        Comments: 
+                    </div>
+                    <div *ngFor="let comments of post.comments" class="border-top border-bottom pt-2">
+                        <div>
+                            <p class="attribution">by <span class="text-success"> <strong><i>@{{comments.author}}</i></strong></span> on {{comments.created_on | date}}</p>
+                        </div>
+                        <div class="pl-3">
+                            <p>{{comments.comment_body}}</p>
+                        </div>
+                    </div>
+                </div>
+                <form [formGroup]="commentForm">
+                    <div class="form-group m-1 mb-2 mt-4">
+                        <label for="first_name">Leave a comment</label>
+                        <textarea class="form-control"  id="first_name" type="text" formControlName="comment_body"  placeholder="Write a comment..."></textarea>
+                        <button type="submit" class="btn btn-primary mt-3 d-inline-block" form="form1" (click)="onPatchComment(post._id)">Reply comment</button>
+                    </div>
+                    
+                </form>
+            </div>
+        </ng-template>
+
+        </div>
+        
     </div>
 
 
-<ng-template #template>
+<ng-template #editTemplate>
     <div class="modal-header">
         <h4 class="modal-title pull-left display-5">EDIT PROFILE</h4>
         <button type="button" class="close pull-right" aria-label="Close" (click)="onReset()">
@@ -33,6 +106,7 @@
         <alert type="danger" *ngIf="errors" >
             {{errors}}
         </alert>
+
         <form [formGroup]="firstNameForm">
             <div class="form-group">
                 <label for="first_name"><b>First Name</b></label>
@@ -97,4 +171,7 @@
     </div>
     
 </ng-template>
+
+
+
 </body>
